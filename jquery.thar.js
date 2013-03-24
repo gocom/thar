@@ -107,6 +107,8 @@
 								$('html, body').animate({
 									scrollTop : $this.offset().top
 								}, 100);
+
+								window.location.hash = '#' + id;
 							})
 					)
 					.prepend(' ');
