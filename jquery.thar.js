@@ -46,7 +46,7 @@
 	{
 		options = $.extend({
 			'prefix' : 'thar-',
-			'anchor' : '§'
+			'anchor' : '&#167;'
 		}, options);
 
 		var occurrences = new Array();
