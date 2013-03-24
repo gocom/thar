@@ -103,7 +103,7 @@
 				$this
 					.prepend(
 						$('<a class="jquery-thar-anchor" />')
-							.text(options.anchor)
+							.html(options.anchor)
 							.attr('href', '#' + id)
 							.click(function (e)
 							{
