@@ -105,7 +105,7 @@
 						$('<a class="jquery-thar-anchor" />')
 							.html(options.anchor)
 							.attr('href', '#' + id)
-							.click(function (e)
+							.on('click.thar', function (e)
 							{
 								e.preventDefault();
 								$('html, body').animate({
