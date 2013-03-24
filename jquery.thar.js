@@ -88,6 +88,10 @@
 				$('html, body').animate({
 					scrollTop : $this.offset().top
 				}, 1000);
+
+				$this.trigger('anchorload.thar', {
+					'id' : id
+				});
 			}
 
 			occurrences.push(id);
