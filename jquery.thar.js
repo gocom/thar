@@ -40,7 +40,7 @@
  * @package jquery.thar
  */
 
-(function ($)
+;(function ($)
 {
 	$.fn.thar = function (options)
 	{
