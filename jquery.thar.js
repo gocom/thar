@@ -106,7 +106,7 @@
 
 			occurrences.push(id);
 
-			$this.attr('id', id);
+			$this.attr('id', id).trigger('anchorcreate.thar');
 
 			if (options.anchor !== false)
 			{
