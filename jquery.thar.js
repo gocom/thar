@@ -61,7 +61,7 @@
 
 		var occurrences = new Array();
 
-		this.each(function ()
+		return this.each(function ()
 		{
 			var $this = $(this);
 
