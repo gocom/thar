@@ -40,7 +40,17 @@
  * @package jquery.thar
  */
 
-;(function ($)
+;(function (factory)
+{
+	if (typeof define === 'function' && define.amd)
+	{
+		define(['jquery'], factory);
+	}
+	else
+	{
+		factory(jQuery);
+	}
+}(function ($)
 {
 	$.fn.thar = function (options)
 	{
@@ -119,4 +129,4 @@
 			}
 		});
 	};
-})(jQuery);
+}));
