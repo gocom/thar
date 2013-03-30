@@ -65,6 +65,11 @@
 		{
 			var $this = $(this);
 
+			if ($this.hasClass('jquery-thar'))
+			{
+				return;
+			}
+
 			if ($this.attr('id'))
 			{
 				var id = $this.attr('id');
