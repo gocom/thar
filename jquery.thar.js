@@ -1,5 +1,5 @@
 /*!
- * jquery.thar - Automatic content anchors
+ * thar - Automatic content anchors
  * https://github.com/gocom/jquery.thar
  *
  * Copyright (C) 2013 Jukka Svahn
@@ -23,7 +23,7 @@
  */
 
 /**
- * jquery.thar
+ * thar
  *
  * A content anchor links plugin for jQuery.
  *
@@ -32,7 +32,7 @@
  * @param   {String|Boolean} options.anchor The anchor link text
  * @return  {Object}         this
  * @author  Jukka Svahn
- * @package jquery.thar
+ * @package thar
  */
 
 ;(function (factory)
