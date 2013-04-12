@@ -52,6 +52,8 @@
 	}
 }(function ($)
 {
+	var occurrences = {};
+
 	$.fn.thar = function (options)
 	{
 		options = $.extend({
@@ -59,7 +61,7 @@
 			'anchor' : '&#167;'
 		}, options);
 
-		var occurrences = {}, ul = $('<ul />');
+		var ul = $('<ul />');
 
 		return this.each(function ()
 		{
