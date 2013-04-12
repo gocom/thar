@@ -1,7 +1,7 @@
 {
 	"name" : "thar",
 	"title" : "thar",
-	"description" : "JavaScript library for DOM operations",
+	"description" : "jQuery anchor link plugin",
 	"version" : "0.1.0",
 	"homepage" : "http://uproar-n-rattle.biz/thar",
 
