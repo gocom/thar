@@ -59,7 +59,7 @@
 			'anchor' : '&#167;'
 		}, options);
 
-		var occurrences = new Array();
+		var occurrences = new Array(), ul = $('<ul />');
 
 		this.each(function ()
 		{
@@ -113,6 +113,12 @@
 
 			$this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
 
+			ul.append(
+				$('<li />')
+					.addClass('jquery-thar-to-' + id)
+					.html($('<a />').attr('href', '#' + id).text($this.text()))
+			);
+
 			if (options.anchor !== false)
 			{
 				$this
@@ -132,8 +138,13 @@
 					)
 					.prepend(' ');
 			}
+		})
+		.extend({
+			tharResults :
+			{
+				'ul' : ul
+			}
 		});
-
 		return this;
 	};
 }));
