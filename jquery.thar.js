@@ -61,7 +61,7 @@
 
 		var occurrences = new Array(), ul = $('<ul />');
 
-		this.each(function ()
+		return this.each(function ()
 		{
 			var $this = $(this);
 
@@ -145,6 +145,5 @@
 				'ul' : ul
 			}
 		});
-		return this;
 	};
 }));
