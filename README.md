@@ -1,5 +1,7 @@
-jquery.thar
+thar
 =============
+
+Yarr, a jQuery anchor link plugin for yer classy content.
 
 Basic usage
 -------------
@@ -11,7 +13,7 @@ Importing sources the old way:
 <script src="components/jquery.thar/jquery.thar.js"></script>
 ```
 
-Initializing on-hover tooltips:
+Initializing:
 
 ```js
 $('h1, h2, h3, h4, h5, h6').thar();
