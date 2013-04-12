@@ -23,11 +23,6 @@
  */
 
 /**
- * @preserve jquery.thar | Copyright (C) 2013 Jukka Svahn | http://uproar-n-rattle.biz
- * Released under the MIT License
- */
-
-/**
  * jquery.thar
  *
  * A content anchor links plugin for jQuery.
