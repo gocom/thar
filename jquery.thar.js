@@ -51,9 +51,17 @@
 	{
 		scrollTo : function ()
 		{
+			var $this = $(this), id = $this.attr('id');
+
 			$('html, body').animate({
-				scrollTop : $(this).offset().top
-			}, 1000);
+				scrollTop : $this.offset().top
+			}, 1000, 'swing', function ()
+			{
+				if (id)
+				{
+					window.location.hash = '#' + id;
+				}
+			});
 		}
 	};
 
@@ -98,6 +106,8 @@
 				}
 			}
 
+			$this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
+
 			if (id === window.location.hash.substr(1))
 			{
 				methods.scrollTo.apply(this);
@@ -106,8 +116,6 @@
 					'id' : id
 				});
 			}
-
-			$this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
 
 			ul.append(
 				$('<li />')
@@ -126,7 +134,6 @@
 							{
 								e.preventDefault();
 								methods.scrollTo.apply(_this);
-								window.location.hash = '#' + id;
 							})
 					)
 					.prepend(' ');
