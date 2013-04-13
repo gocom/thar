@@ -68,7 +68,7 @@
 
 		return this.each(function ()
 		{
-			var _this = this, $this = $(this);
+			var _this = this, $this = $(this), id = '';
 
 			if ($this.hasClass('jquery-thar'))
 			{
@@ -77,11 +77,11 @@
 
 			if ($this.attr('id'))
 			{
-				var id = $this.attr('id');
+				id = $this.attr('id');
 			}
 			else
 			{
-				var id = options.prefix + encodeURIComponent($this.text().replace(/\s/g, '-'))
+				id = options.prefix + encodeURIComponent($this.text().replace(/\s/g, '-'))
 					.replace(/[^a-z0-9\-]+/gi, '-')
 					.replace(/^[0-9\-]|-$/, '')
 					.replace(/-{2,}/, '-')
