@@ -15,7 +15,7 @@ module.exports = function (grunt)
 			{
 				files :
 				{
-					'jquery.thar.min.js': ['jquery.thar.js']
+					'dist/jquery.thar.min.js': ['jquery.thar.js']
 				}
 			}
 		},
@@ -27,8 +27,8 @@ module.exports = function (grunt)
 				files :
 				[
 					{
-						src  : ['jquery.thar.min.js'],
-						dest : 'jquery.thar.v<%= pkg.version %>.min.js'
+						src  : ['dist/jquery.thar.min.js'],
+						dest : 'dist/jquery.thar.v<%= pkg.version %>.min.js'
 					}
 				]
 			}
