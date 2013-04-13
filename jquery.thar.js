@@ -47,7 +47,15 @@
 	}
 }(function ($)
 {
-	var occurrences = {};
+	var occurrences = {}, methods =
+	{
+		scrollTo : function ()
+		{
+			$('html, body').animate({
+				scrollTop : $(this).offset().top
+			}, 1000);
+		}
+	};
 
 	$.fn.thar = function (options)
 	{
@@ -60,7 +68,7 @@
 
 		return this.each(function ()
 		{
-			var $this = $(this);
+			var _this = this, $this = $(this);
 
 			if ($this.hasClass('jquery-thar'))
 			{
@@ -92,9 +100,7 @@
 
 			if (id === window.location.hash.substr(1))
 			{
-				$('html, body').animate({
-					scrollTop : $this.offset().top
-				}, 1000);
+				methods.scrollTo.apply(this);
 
 				$this.trigger('anchorload.thar', {
 					'id' : id
@@ -119,10 +125,7 @@
 							.on('click.thar', function (e)
 							{
 								e.preventDefault();
-								$('html, body').animate({
-									scrollTop : $this.offset().top
-								}, 100);
-
+								methods.scrollTo.apply(_this);
 								window.location.hash = '#' + id;
 							})
 					)
