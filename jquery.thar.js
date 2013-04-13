@@ -120,7 +120,16 @@
 			ul.append(
 				$('<li />')
 					.addClass('jquery-thar-to-' + id)
-					.html($('<a />').attr('href', '#' + id).text($this.text()))
+					.html(
+						$('<a />')
+							.attr('href', '#' + id)
+							.text($this.text())
+							.on('click.thar', function (e)
+							{
+								e.preventDefault();
+								methods.scrollTo.apply(_this);
+							})
+					)
 			);
 
 			if (options.anchor !== false)
