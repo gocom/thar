@@ -1,6 +1,7 @@
 module.exports = function (grunt)
 {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.initConfig({
 		pkg : grunt.file.readJSON('package.json'),
@@ -14,12 +15,25 @@ module.exports = function (grunt)
 			{
 				files :
 				{
-					'jquery.thar.min.js': ['jquery.thar.js'],
-					'jquery.thar.v<%= pkg.version %>.min.js': ['jquery.thar.js']
+					'jquery.thar.min.js': ['jquery.thar.js']
 				}
+			}
+		},
+
+		copy :
+		{
+			main :
+			{
+				files :
+				[
+					{
+						src  : ['jquery.thar.min.js'],
+						dest : 'jquery.thar.v<%= pkg.version %>.min.js'
+					}
+				]
 			}
 		}
 	});
 
-	grunt.registerTask('default', ['uglify']);
+	grunt.registerTask('default', ['uglify', 'copy']);
 };
