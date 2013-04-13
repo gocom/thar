@@ -1,43 +1,37 @@
 {
-	"name" : "thar",
-	"title" : "thar",
-	"description" : "jQuery anchor link plugin",
-	"version" : "0.1.0",
-	"homepage" : "http://uproar-n-rattle.biz/thar",
-
-	"author" :
-	{
-		"name" : "Jukka Svahn",
-		"url" : "http://uproar-n-rattle.biz"
+	"name": "thar",
+	"title": "thar",
+	"description": "jQuery anchor link plugin",
+	"version": "0.1.0",
+	"homepage": "http://uproar-n-rattle.biz/thar",
+	"author": {
+		"name": "Jukka Svahn",
+		"url": "http://uproar-n-rattle.biz"
 	},
-
-	"repository" :
-	{
-		"type" : "git",
-		"url" : "https://github.com/gocom/jquery.thar"
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gocom/jquery.thar"
 	},
-
-	"bugs" :
-	{
-		"url" : "https://github.com/gocom/jquery.thar/issues"
+	"bugs": {
+		"url": "https://github.com/gocom/jquery.thar/issues"
 	},
-
-	"licenses" :
-	[
+	"licenses": [
 		{
-			"type" : "MIT",
-			"url" : "https://raw.github.com/gocom/jquery.thar/master/LICENSE"
+			"type": "MIT",
+			"url": "https://raw.github.com/gocom/jquery.thar/master/LICENSE"
 		}
 	],
-
-	"dependencies" :
-	{
-		"grunt-contrib-uglify"         : "0.2.0",
-		"grunt-contrib-copy"           : "0.4.1",
-		"grunt-contrib-jshint"         : "0.4.3",
-		"grunt-conventional-changelog" : "0.0.12",
-		"grunt-bumpup"                 : "0.2.0"
+	"dependencies": {
+		"grunt-contrib-uglify": "0.2.0",
+		"grunt-contrib-copy": "0.4.1",
+		"grunt-contrib-jshint": "0.4.3",
+		"grunt-conventional-changelog": "0.0.12",
+		"grunt-bumpup": "0.2.0"
 	},
-
-	"keywords" : ["content", "anchor", "links", "navigation"]
+	"keywords": [
+		"content",
+		"anchor",
+		"links",
+		"navigation"
+	]
 }
