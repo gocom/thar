@@ -72,7 +72,7 @@ module.exports = function (grunt)
 
 	grunt.registerTask('default', ['jshint', 'uglify', 'copy']);
 	grunt.registerTask('changelog', ['changelog']);
-	grunt.registerTask('debug', ['jshint', 'qunit']);
+	grunt.registerTask('test', ['jshint', 'qunit']);
 
 	grunt.registerTask('release', function (type)
 	{
