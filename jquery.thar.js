@@ -91,6 +91,7 @@
 			{
 				id = options.prefix + encodeURIComponent($this.text().replace(/\s/g, '-'))
 					.replace(/[^A-Z0-9\-]/gi, '-')
+					.substr(0, 255)
 					.replace(/^[\d\-]|-$/g, '')
 					.replace(/-{2,}/g, '-')
 					.toLowerCase();
