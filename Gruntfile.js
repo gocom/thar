@@ -5,6 +5,7 @@ module.exports = function (grunt)
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-conventional-changelog');
 	grunt.loadNpmTasks('grunt-bumpup');
+	grunt.loadNpmTasks('grunt-contrib-qunit');
 
 	grunt.initConfig({
 		pkg : grunt.file.readJSON('package.json'),
@@ -61,12 +62,17 @@ module.exports = function (grunt)
 		bumpup :
 		{
 			files : ['package.json']
+		},
+
+		qunit :
+		{
+			all : ['test/*.html']
 		}
 	});
 
 	grunt.registerTask('default', ['jshint', 'uglify', 'copy']);
 	grunt.registerTask('changelog', ['changelog']);
-	grunt.registerTask('debug', ['jshint']);
+	grunt.registerTask('debug', ['jshint', 'qunit']);
 
 	grunt.registerTask('release', function (type)
 	{
