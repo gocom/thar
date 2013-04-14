@@ -90,8 +90,9 @@
 			else
 			{
 				id = options.prefix + encodeURIComponent($this.text().replace(/\s/g, '-'))
-					.replace(/[^\w\-]+|-{2,}/g, '-')
+					.replace(/[^A-Z0-9\-]/gi, '-')
 					.replace(/^[\d\-]|-$/g, '')
+					.replace(/-{2,}/g, '-')
 					.toLowerCase();
 
 				if ($.type(occurrences[id]) !== 'undefined')
