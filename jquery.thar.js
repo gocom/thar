@@ -76,7 +76,7 @@
 
 		return this.each(function ()
 		{
-			var _this = this, $this = $(this), id = '';
+			var _this = this, $this = $(this), id = '', anchor;
 
 			if ($this.hasClass('jquery-thar'))
 			{
@@ -135,18 +135,22 @@
 
 			if (options.anchor !== false)
 			{
-				$this
-					.prepend(
-						$('<a class="jquery-thar-anchor" />')
-							.html(options.anchor)
-							.attr('href', '#' + id)
-							.on('click.thar', function (e)
-							{
-								e.preventDefault();
-								methods.scrollTo.apply(_this);
-							})
-					)
-					.prepend(' ');
+				anchor = $('<a class="jquery-thar-anchor" />')
+					.attr('href', '#' + id)
+					.on('click.thar', function (e)
+					{
+						e.preventDefault();
+						methods.scrollTo.apply(_this);
+					});
+
+				if (options.anchor === true)
+				{
+					$this.wrapInner(anchor);
+				}
+				else
+				{
+					$this.prepend(anchor.html(options.anchor)).prepend(' ');
+				}
 			}
 		})
 		.extend({
