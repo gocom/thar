@@ -47,7 +47,7 @@
 	}
 }(function ($)
 {
-	var hash = window.location.hash.substr(1), occurrences = {}, methods =
+	var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods =
 	{
 		scrollTo : function ()
 		{
