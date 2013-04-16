@@ -47,7 +47,7 @@
 	}
 }(function ($)
 {
-	var occurrences = {}, methods =
+	var hash = window.location.hash.substr(1), occurrences = {}, methods =
 	{
 		scrollTo : function ()
 		{
@@ -109,13 +109,15 @@
 
 			$this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
 
-			if (id === window.location.hash.substr(1))
+			if (id === hash)
 			{
 				methods.scrollTo.apply(this);
 
 				$this.trigger('anchorload.thar', {
 					'id' : id
 				});
+
+				hash = false;
 			}
 
 			ul.append(
