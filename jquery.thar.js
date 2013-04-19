@@ -68,7 +68,7 @@
 	$.fn.thar = function (options)
 	{
 		options = $.extend({
-			'prefix' : 'thar-',
+			'prefix' : '',
 			'anchor' : '&#167;'
 		}, options);
 
