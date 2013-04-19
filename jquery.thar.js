@@ -76,12 +76,14 @@
 
 		return this.each(function ()
 		{
-			var _this = this, $this = $(this), id = '', anchor;
+			var _this = this, $this = $(this), id = '', anchor, content;
 
 			if ($this.hasClass('jquery-thar'))
 			{
 				return;
 			}
+
+			content = $this.text();
 
 			if ($this.attr('id'))
 			{
@@ -89,7 +91,7 @@
 			}
 			else
 			{
-				id = options.prefix + encodeURIComponent($this.text().replace(/\s/g, '-'))
+				id = options.prefix + encodeURIComponent(content.replace(/\s/g, '-'))
 					.replace(/[^A-Z0-9\-]/gi, '-')
 					.substr(0, 255)
 					.replace(/^[\d\-]|-$/g, '')
@@ -126,7 +128,7 @@
 					.html(
 						$('<a />')
 							.attr('href', '#' + id)
-							.text($this.text())
+							.text(content)
 							.on('click.thar', function (e)
 							{
 								e.preventDefault();
