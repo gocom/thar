@@ -45,7 +45,7 @@
     }
 }(function ($)
 {
-    var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods = {};
+    var hash = window.location.hash.substr(1), methods = {};
 
     /**
      * Sets an anchor ID from the element text contents.
@@ -59,7 +59,7 @@
     {
         return this.each(function ()
         {
-            var $this = $(this), id = $this.attr('id'), content;
+            var $this = $(this), id = $this.attr('id'), content, occurrences = 1;
 
             if (!id)
             {
@@ -72,22 +72,18 @@
                     .replace(/-{2,}/g, '-')
                     .toLowerCase();
 
-                if ($.type(occurrences[id]) !== 'undefined')
-                {
-                    occurrences[id]++;
-                    id += '_' + occurrences[id];
-                }
-                else if (document.getElementById(id))
-                {
-                    occurrences[id] = 1;
-                    id += '_1';
-                }
-                else
-                {
-                    occurrences[id] = 1;
-                }
+                uniqueID = id;
 
-                $this.attr('id', id);
+                while (1)
+                {
+                    if (!document.getElementById(uniqueID))
+                    {
+                        $this.attr('id', uniqueID);
+                        return;
+                    }
+
+                    uniqueID = id + '-' + (occurrences++);
+                }
             }
         });
     };
