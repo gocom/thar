@@ -141,7 +141,7 @@
 
         this.filter('h1, h2, h3, h4, h5, h6').each(function ()
         {
-            var $this = $(this), html = '', level = this.nodeName.substr(1, 1);
+            var $this = $(this), level = this.nodeName.substr(1, 1);
 
             if (level > baseLevel || !$this.attr('id'))
             {
