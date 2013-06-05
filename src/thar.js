@@ -45,36 +45,45 @@
     }
 }(function ($)
 {
-    var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods =
-    {
-        scrollTo : function ()
-        {
-            var $this = $(this), id = $this.attr('id');
+    var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods = {};
 
-            $('html, body').animate({
-                scrollTop : $this.offset().top
-            }, 1000, 'swing', function ()
+    /**
+     * Scrolls to the selected element.
+     *
+     * @return   {Object}         this
+     * @method   scrollTo
+     * @memberof jQuery.fn.thar
+     */
+
+    methods.scrollTo = function ()
+    {
+        var $this = $(this).eq(0), id = $this.attr('id');
+
+        $('html, body').animate({
+            scrollTop : $this.offset().top
+        }, 1000, 'swing', function ()
+        {
+            if (id)
             {
-                if (id)
-                {
-                    window.location.hash = '#' + id;
-                }
-            });
-        }
+                window.location.hash = '#' + id;
+            }
+        });
+
+        return this;
     };
 
     /**
      * Renders content anchor links.
      *
-     * @param    {Object}         options        Options
-     * @param    {String}         options.prefix A prefix added to the generated links
-     * @param    {String|Boolean} options.anchor The anchor link text
+     * @param    {Object}         options                   Options
+     * @param    {String}         [options.prefix='']       A prefix added to the generated links
+     * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text
      * @return   {Object}         this
-     * @class    dense
-     * @memberof jQuery.fn
+     * @method   init
+     * @memberof jQuery.fn.thar
      */
 
-    $.fn.thar = function (options)
+    methods.init = function (options)
     {
         options = $.extend({
             'prefix' : '',
@@ -172,5 +181,25 @@
                 'ul' : ul
             }
         });
+    };
+
+    /**
+     * Renders content anchor links.
+     *
+     * @param    {String}  [method=init] The called method
+     * @param    {Object}  [options={}]  Options passed to the method
+     * @class    thar
+     * @memberof jQuery.fn
+     */
+
+    $.fn.thar = function (method, options)
+    {
+        if ($.type(method) !== 'string' || $.type(methods[method]) !== 'function')
+        {
+            options = method;
+            method = 'init';
+        }
+
+        return methods[method].call(this, options);
     };
 }));
