@@ -110,9 +110,86 @@
     };
 
     /**
+     * Gets a contents listing.
+     *
+     * This method can be used to generate menus and
+     * content tables based on headings.
+     *
+     * The content listing is added to the target element
+     * specified with the <code>target</code> option. If
+     * the target is left to its default <code>NULL</code>,
+     * the list is added before the first heading.
+     *
+     * @param    {Object}       [options={}]          Options 
+     * @param    {Object|null}  [options.target=null] The target where the list is added to, takes an jQuery object
+     * @return   {Object}       this
+     * @method   getContentList
+     * @memberof jQuery.fn.thar
+     * @example
+     * $('h2, h3, h4, h5, h6').thar('getContentList', {
+     *  'target' : $('nav#contents')
+     * });
+     */
+
+    methods.getContentList = function (options)
+    {
+        options = $.extend({
+            target : null
+        }, options);
+
+        var previousLevel = 0, contents = '', baseLevel = this.get(0).nodeName.substr(1, 1);
+
+        this.filter('h1, h2, h3, h4, h5, h6').each(function ()
+        {
+            var $this = $(this), html = '', level = this.nodeName.substr(1, 1);
+
+            if (level > baseLevel || !$this.attr('id'))
+            {
+                return;
+            }
+
+            if (!previousLevel)
+            {
+                contents += '<li>';
+            }
+            else if (level == previousLevel)
+            {
+                contents += '</li><li>';
+            }
+            else if (level > previousLevel)
+            {
+                contents += new Array(level - previousLevel + 1).join('<ul><li>');
+            }
+            else if (level < previousLevel)
+            {
+                contents += new Array(level - previousLevel + 1).join('</li></ul>') + '</li><li>';
+            }
+
+            previousLevel = level;
+            contents += $('<div />').html($('<a />').text($this.clone().find('.jquery-thar-anchor').remove().end().text()).attr('href', '#' + $this.attr('id'))).html();
+        });
+
+        if (contents)
+        {
+            contents = '<ul>' + contents + new Array(previousLevel - baseLevel + 1).join('</li></ul>') + '</li></ul>';
+
+            if (!options.target)
+            {
+                this.eq(0).before(contents);
+            }
+            else
+            {
+                options.target.html(contents);
+            }
+        }
+
+        return this;
+    };
+
+    /**
      * Renders content anchor links.
      *
-     * @param    {Object}         options                   Options
+     * @param    {Object}         [options={}]              Options
      * @param    {String}         [options.prefix='']       A prefix added to the generated links
      * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text
      * @return   {Object}         this
@@ -125,8 +202,6 @@
         options = $.extend({
             'anchor' : '&#167;'
         }, options);
-
-        var ul = $('<ul />');
 
         return this.thar('setAnchorID').each(function ()
         {
@@ -150,21 +225,6 @@
                 hash = false;
             }
 
-            ul.append(
-                $('<li />')
-                    .addClass('jquery-thar-to-' + id)
-                    .html(
-                        $('<a />')
-                            .attr('href', '#' + id)
-                            .text(content)
-                            .on('click.thar', function (e)
-                            {
-                                e.preventDefault();
-                                methods.scrollTo.apply(_this);
-                            })
-                    )
-            );
-
             if (options.anchor !== false)
             {
                 anchor = $('<a class="jquery-thar-anchor" />')
@@ -183,12 +243,6 @@
                 {
                     $this.prepend(anchor.html(options.anchor)).prepend(' ');
                 }
-            }
-        })
-        .extend({
-            tharResults :
-            {
-                'ul' : ul
             }
         });
     };
