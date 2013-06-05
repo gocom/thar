@@ -37,131 +37,131 @@
 
 ;(function (factory)
 {
-	if (typeof define === 'function' && define.amd)
-	{
-		define(['jquery'], factory);
-	}
-	else
-	{
-		factory(jQuery);
-	}
+    if (typeof define === 'function' && define.amd)
+    {
+        define(['jquery'], factory);
+    }
+    else
+    {
+        factory(jQuery);
+    }
 }(function ($)
 {
-	var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods =
-	{
-		scrollTo : function ()
-		{
-			var $this = $(this), id = $this.attr('id');
+    var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods =
+    {
+        scrollTo : function ()
+        {
+            var $this = $(this), id = $this.attr('id');
 
-			$('html, body').animate({
-				scrollTop : $this.offset().top
-			}, 1000, 'swing', function ()
-			{
-				if (id)
-				{
-					window.location.hash = '#' + id;
-				}
-			});
-		}
-	};
+            $('html, body').animate({
+                scrollTop : $this.offset().top
+            }, 1000, 'swing', function ()
+            {
+                if (id)
+                {
+                    window.location.hash = '#' + id;
+                }
+            });
+        }
+    };
 
-	$.fn.thar = function (options)
-	{
-		options = $.extend({
-			'prefix' : '',
-			'anchor' : '&#167;'
-		}, options);
+    $.fn.thar = function (options)
+    {
+        options = $.extend({
+            'prefix' : '',
+            'anchor' : '&#167;'
+        }, options);
 
-		var ul = $('<ul />');
+        var ul = $('<ul />');
 
-		return this.each(function ()
-		{
-			var _this = this, $this = $(this), id = '', anchor, content;
+        return this.each(function ()
+        {
+            var _this = this, $this = $(this), id = '', anchor, content;
 
-			if ($this.hasClass('jquery-thar'))
-			{
-				return;
-			}
+            if ($this.hasClass('jquery-thar'))
+            {
+                return;
+            }
 
-			content = $this.text();
+            content = $this.text();
 
-			if ($this.attr('id'))
-			{
-				id = $this.attr('id');
-			}
-			else
-			{
-				id = options.prefix + encodeURIComponent(content.replace(/\s/g, '-'))
-					.replace(/[^A-Z0-9\-]/gi, '-')
-					.substr(0, 255)
-					.replace(/^[\d\-]|-$/g, '')
-					.replace(/-{2,}/g, '-')
-					.toLowerCase();
+            if ($this.attr('id'))
+            {
+                id = $this.attr('id');
+            }
+            else
+            {
+                id = options.prefix + encodeURIComponent(content.replace(/\s/g, '-'))
+                    .replace(/[^A-Z0-9\-]/gi, '-')
+                    .substr(0, 255)
+                    .replace(/^[\d\-]|-$/g, '')
+                    .replace(/-{2,}/g, '-')
+                    .toLowerCase();
 
-				if ($.type(occurrences[id]) !== 'undefined')
-				{
-					occurrences[id]++;
-					id += '_' + occurrences[id];
-				}
-				else
-				{
-					occurrences[id] = 1;
-				}
-			}
+                if ($.type(occurrences[id]) !== 'undefined')
+                {
+                    occurrences[id]++;
+                    id += '_' + occurrences[id];
+                }
+                else
+                {
+                    occurrences[id] = 1;
+                }
+            }
 
-			$this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
+            $this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
 
-			if (id === hash)
-			{
-				methods.scrollTo.apply(this);
+            if (id === hash)
+            {
+                methods.scrollTo.apply(this);
 
-				$this.trigger('anchorload.thar', {
-					'id' : id
-				});
+                $this.trigger('anchorload.thar', {
+                    'id' : id
+                });
 
-				hash = false;
-			}
+                hash = false;
+            }
 
-			ul.append(
-				$('<li />')
-					.addClass('jquery-thar-to-' + id)
-					.html(
-						$('<a />')
-							.attr('href', '#' + id)
-							.text(content)
-							.on('click.thar', function (e)
-							{
-								e.preventDefault();
-								methods.scrollTo.apply(_this);
-							})
-					)
-			);
+            ul.append(
+                $('<li />')
+                    .addClass('jquery-thar-to-' + id)
+                    .html(
+                        $('<a />')
+                            .attr('href', '#' + id)
+                            .text(content)
+                            .on('click.thar', function (e)
+                            {
+                                e.preventDefault();
+                                methods.scrollTo.apply(_this);
+                            })
+                    )
+            );
 
-			if (options.anchor !== false)
-			{
-				anchor = $('<a class="jquery-thar-anchor" />')
-					.attr('href', '#' + id)
-					.on('click.thar', function (e)
-					{
-						e.preventDefault();
-						methods.scrollTo.apply(_this);
-					});
+            if (options.anchor !== false)
+            {
+                anchor = $('<a class="jquery-thar-anchor" />')
+                    .attr('href', '#' + id)
+                    .on('click.thar', function (e)
+                    {
+                        e.preventDefault();
+                        methods.scrollTo.apply(_this);
+                    });
 
-				if (options.anchor === true)
-				{
-					$this.wrapInner(anchor);
-				}
-				else
-				{
-					$this.prepend(anchor.html(options.anchor)).prepend(' ');
-				}
-			}
-		})
-		.extend({
-			tharResults :
-			{
-				'ul' : ul
-			}
-		});
-	};
+                if (options.anchor === true)
+                {
+                    $this.wrapInner(anchor);
+                }
+                else
+                {
+                    $this.prepend(anchor.html(options.anchor)).prepend(' ');
+                }
+            }
+        })
+        .extend({
+            tharResults :
+            {
+                'ul' : ul
+            }
+        });
+    };
 }));

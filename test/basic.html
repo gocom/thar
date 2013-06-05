@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Basic</title>
-	<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css" />
+    <meta charset="utf-8" />
+    <title>Basic</title>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css" />
 </head>
 <body>
-	<div id="qunit"></div>
-	<div id="qunit-fixture"></div>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
 
-	<div id="content">
-		<h2>Heading 1</h2>
-		<h2>Heading 2</h2>
-	</div>
+    <div id="content">
+        <h2>Heading 1</h2>
+        <h2>Heading 2</h2>
+    </div>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="../jquery.thar.js"></script>
-	<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../jquery.thar.js"></script>
+    <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 
-	<script>
-		test("thar", function()
-		{
-			$('h2').thar();
-			ok($('#content h2.jquery-thar').length === 2, "2 anchors created."); 
-		});
-	</script>
+    <script>
+        test("thar", function()
+        {
+            $('h2').thar();
+            ok($('#content h2.jquery-thar').length === 2, "2 anchors created."); 
+        });
+    </script>
 </body>
 </html>
