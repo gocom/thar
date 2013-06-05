@@ -13,14 +13,14 @@ module.exports = function (grunt)
         {
             options :
             {
-                banner : '/*! <%= pkg.name %> | Copyright (C) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> | <%= pkg.homepage %> | Released under the MIT License */\n',
+                banner : '/*! <%= pkg.name %> v<%= pkg.version %> | Copyright (C) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> | <%= pkg.homepage %> | Released under the MIT License */\n',
                 report : "gzip"
             },
             dist :
             {
                 files :
                 {
-                    'dist/jquery.thar.min.js': ['jquery.thar.js']
+                    'dist/thar.min.js': ['src/*.js']
                 }
             }
         },
@@ -32,8 +32,8 @@ module.exports = function (grunt)
                 files :
                 [
                     {
-                        src  : ['dist/jquery.thar.min.js'],
-                        dest : 'dist/jquery.thar.v<%= pkg.version %>.min.js'
+                        src  : ['dist/thar.min.js'],
+                        dest : 'dist/thar.v<%= pkg.version %>.min.js'
                     }
                 ]
             }
@@ -41,7 +41,7 @@ module.exports = function (grunt)
 
         jshint :
         {
-            files : ['Gruntfile.js', 'jquery.thar.js'],
+            files : ['Gruntfile.js', 'src/*.js'],
             options :
             {
                 globals :
