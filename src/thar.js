@@ -59,13 +59,11 @@
     {
         return this.each(function ()
         {
-            var $this = $(this), id = $this.attr('id'), content, occurrences = 1, uniqueID;
+            var $this = $(this), id = $this.attr('id'), occurrences = 1, uniqueID;
 
             if (!id)
             {
-                content = $this.text();
-
-                uniqueID = id = encodeURIComponent(content.replace(/\s/g, '-'))
+                uniqueID = id = encodeURIComponent($this.text().replace(/\s/g, '-'))
                     .replace(/[^A-Z0-9\-]/gi, '-')
                     .substr(0, 255)
                     .replace(/^[\d\-]|-$/g, '')
