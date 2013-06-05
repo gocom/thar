@@ -48,6 +48,51 @@
     var hash = window.location.hash.substr(1), occurrences = {'' : 0}, methods = {};
 
     /**
+     * Sets an anchor ID from the element text contents.
+     *
+     * @return   {Object}         this
+     * @method   setAnchorID
+     * @memberof jQuery.fn.thar
+     */
+
+    methods.setAnchorID = function ()
+    {
+        return this.each(function ()
+        {
+            var $this = $(this), id = $this.attr('id'), content;
+
+            if (!id)
+            {
+                content = $this.text();
+
+                id = encodeURIComponent(content.replace(/\s/g, '-'))
+                    .replace(/[^A-Z0-9\-]/gi, '-')
+                    .substr(0, 255)
+                    .replace(/^[\d\-]|-$/g, '')
+                    .replace(/-{2,}/g, '-')
+                    .toLowerCase();
+
+                if ($.type(occurrences[id]) !== 'undefined')
+                {
+                    occurrences[id]++;
+                    id += '_' + occurrences[id];
+                }
+                else if (document.getElementById(id))
+                {
+                    occurrences[id] = 1;
+                    id += '_1';
+                }
+                else
+                {
+                    occurrences[id] = 1;
+                }
+
+                $this.attr('id', id);
+            }
+        });
+    };
+
+    /**
      * Scrolls to the selected element.
      *
      * @return   {Object}         this
@@ -86,48 +131,21 @@
     methods.init = function (options)
     {
         options = $.extend({
-            'prefix' : '',
             'anchor' : '&#167;'
         }, options);
 
         var ul = $('<ul />');
 
-        return this.each(function ()
+        return this.thar('setAnchorID').each(function ()
         {
-            var _this = this, $this = $(this), id = '', anchor, content;
+            var _this = this, $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
 
             if ($this.hasClass('jquery-thar'))
             {
                 return;
             }
 
-            content = $this.text();
-
-            if ($this.attr('id'))
-            {
-                id = $this.attr('id');
-            }
-            else
-            {
-                id = options.prefix + encodeURIComponent(content.replace(/\s/g, '-'))
-                    .replace(/[^A-Z0-9\-]/gi, '-')
-                    .substr(0, 255)
-                    .replace(/^[\d\-]|-$/g, '')
-                    .replace(/-{2,}/g, '-')
-                    .toLowerCase();
-
-                if ($.type(occurrences[id]) !== 'undefined')
-                {
-                    occurrences[id]++;
-                    id += '_' + occurrences[id];
-                }
-                else
-                {
-                    occurrences[id] = 1;
-                }
-            }
-
-            $this.attr('id', id).addClass('jquery-thar').trigger('anchorcreate.thar');
+            $this.addClass('jquery-thar').trigger('anchorcreate.thar');
 
             if (id === hash)
             {
