@@ -2,7 +2,7 @@
     "name": "thar",
     "title": "thar",
     "description": "jQuery anchor link plugin",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "homepage": "http://uproar-n-rattle.biz/thar",
     "author": {
         "name": "Jukka Svahn",
@@ -10,15 +10,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/gocom/jquery.thar.git"
+        "url": "https://github.com/gocom/thar.git"
     },
     "bugs": {
-        "url": "https://github.com/gocom/jquery.thar/issues"
+        "url": "https://github.com/gocom/thar/issues"
     },
     "licenses": [
         {
             "type": "MIT",
-            "url": "https://raw.github.com/gocom/jquery.thar/master/LICENSE"
+            "url": "https://raw.github.com/gocom/thar/master/LICENSE"
         }
     ],
     "dependencies": {
