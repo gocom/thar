@@ -1,6 +1,6 @@
-/*!
- * thar - Automatic content anchors
- * https://github.com/gocom/jquery.thar
+/*
+ * thar - Automatic content anchors link plugin for jQuery
+ * https://github.com/gocom/thar
  *
  * Copyright (C) 2013 Jukka Svahn
  *
@@ -23,16 +23,14 @@
  */
 
 /**
- * thar
- *
- * A content anchor links plugin for jQuery.
- *
- * @param   {Object}         options        Options
- * @param   {String}         options.prefix A prefix added to the generated links
- * @param   {String|Boolean} options.anchor The anchor link text
- * @return  {Object}         this
- * @author  Jukka Svahn
- * @package thar
+ * @name jQuery
+ * @class
+ */
+
+/**
+ * @name fn
+ * @class
+ * @memberOf jQuery
  */
 
 ;(function (factory)
@@ -64,6 +62,17 @@
             });
         }
     };
+
+    /**
+     * Renders content anchor links.
+     *
+     * @param    {Object}         options        Options
+     * @param    {String}         options.prefix A prefix added to the generated links
+     * @param    {String|Boolean} options.anchor The anchor link text
+     * @return   {Object}         this
+     * @class    dense
+     * @memberof jQuery.fn
+     */
 
     $.fn.thar = function (options)
     {
