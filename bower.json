@@ -1,0 +1,10 @@
+{
+    "name": "thar",
+    "version": "0.0.1",
+    "main": [
+        "src/thar.js"
+    ],
+    "dependencies": {
+        "jquery": ">=1.7.0"
+    }
+}
