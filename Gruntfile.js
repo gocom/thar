@@ -71,7 +71,7 @@ module.exports = function (grunt)
     });
 
     grunt.registerTask('default', ['jshint', 'uglify', 'copy']);
-    grunt.registerTask('changelog', ['changelog']);
+    grunt.registerTask('build', ['jshint', 'uglify']);
     grunt.registerTask('test', ['jshint', 'qunit']);
 
     grunt.registerTask('release', function (type)
