@@ -48,72 +48,71 @@
     var hash = window.location.hash.substr(1), methods = {};
 
     /**
-     * Sets an anchor ID from the element text contents.
+     * Renders content anchor links.
      *
+     * @param    {Object}         [options={}]              Options
+     * @param    {String}         [options.prefix='']       A prefix added to the generated links
+     * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text
      * @return   {Object}         this
-     * @method   setAnchorID
+     * @method   init
      * @memberof jQuery.fn.thar
      */
 
-    methods.setAnchorID = function ()
+    methods.init = function (options)
     {
-        return this.each(function ()
+        options = $.extend({
+            'anchor' : '&#167;'
+        }, options);
+
+        return this.thar('setAnchorID').each(function ()
         {
-            var $this = $(this), id = $this.attr('id'), occurrences = 1, uniqueID;
+            var $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
 
-            if (!id)
+            if ($this.hasClass('jquery-thar'))
             {
-                uniqueID = id = encodeURIComponent($this.text().replace(/\s/g, '-'))
-                    .replace(/[^A-Z0-9\-]/gi, '-')
-                    .substr(0, 255)
-                    .replace(/^[\d\-]|-$/g, '')
-                    .replace(/-{2,}/g, '-')
-                    .toLowerCase() || 'thar';
+                return;
+            }
 
-                while (1)
-                {
-                    if (!document.getElementById(uniqueID))
+            $this.addClass('jquery-thar').trigger('anchorcreate.thar');
+
+            if (id === hash)
+            {
+                methods.scrollTo.apply($this);
+
+                $this.trigger('anchorload.thar', {
+                    'id' : id
+                });
+
+                hash = false;
+            }
+
+            if (options.anchor !== false)
+            {
+                anchor = $('<a class="jquery-thar-anchor" />')
+                    .attr('href', '#' + id)
+                    .on('click.thar', function (e)
                     {
-                        $this.attr('id', uniqueID);
-                        return;
-                    }
+                        e.preventDefault();
+                        methods.scrollTo.apply($this);
+                    });
 
-                    uniqueID = id + '-' + (occurrences++);
+                if (options.anchor === true)
+                {
+                    $this.wrapInner(anchor);
+                }
+                else
+                {
+                    $this.prepend(anchor.html(options.anchor)).prepend(' ');
                 }
             }
         });
     };
 
     /**
-     * Scrolls to the selected element.
-     *
-     * @return   {Object}         this
-     * @method   scrollTo
-     * @memberof jQuery.fn.thar
-     */
-
-    methods.scrollTo = function ()
-    {
-        var $this = this.eq(0), id = $this.attr('id');
-
-        $('html, body').animate({
-            scrollTop : $this.offset().top
-        }, 1000, 'swing', function ()
-        {
-            if (id)
-            {
-                window.location.hash = '#' + id;
-            }
-        });
-
-        return this;
-    };
-
-    /**
      * Gets a contents listing.
      *
      * This method can be used to generate menus and
-     * content tables based on headings.
+     * content tables based on selected headings.
      *
      * The content listing is added to the target element
      * specified with the <code>target</code> option. If
@@ -198,64 +197,65 @@
     };
 
     /**
-     * Renders content anchor links.
+     * Sets an anchor ID from the element text contents.
      *
-     * @param    {Object}         [options={}]              Options
-     * @param    {String}         [options.prefix='']       A prefix added to the generated links
-     * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text
      * @return   {Object}         this
-     * @method   init
+     * @method   setAnchorID
      * @memberof jQuery.fn.thar
      */
 
-    methods.init = function (options)
+    methods.setAnchorID = function ()
     {
-        options = $.extend({
-            'anchor' : '&#167;'
-        }, options);
-
-        return this.thar('setAnchorID').each(function ()
+        return this.each(function ()
         {
-            var $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
+            var $this = $(this), id = $this.attr('id'), occurrences = 1, uniqueID;
 
-            if ($this.hasClass('jquery-thar'))
+            if (!id)
             {
-                return;
-            }
+                uniqueID = id = encodeURIComponent($this.text().replace(/\s/g, '-'))
+                    .replace(/[^A-Z0-9\-]/gi, '-')
+                    .substr(0, 255)
+                    .replace(/^[\d\-]|-$/g, '')
+                    .replace(/-{2,}/g, '-')
+                    .toLowerCase() || 'thar';
 
-            $this.addClass('jquery-thar').trigger('anchorcreate.thar');
-
-            if (id === hash)
-            {
-                methods.scrollTo.apply($this);
-
-                $this.trigger('anchorload.thar', {
-                    'id' : id
-                });
-
-                hash = false;
-            }
-
-            if (options.anchor !== false)
-            {
-                anchor = $('<a class="jquery-thar-anchor" />')
-                    .attr('href', '#' + id)
-                    .on('click.thar', function (e)
+                while (1)
+                {
+                    if (!document.getElementById(uniqueID))
                     {
-                        e.preventDefault();
-                        methods.scrollTo.apply($this);
-                    });
+                        $this.attr('id', uniqueID);
+                        return;
+                    }
 
-                if (options.anchor === true)
-                {
-                    $this.wrapInner(anchor);
-                }
-                else
-                {
-                    $this.prepend(anchor.html(options.anchor)).prepend(' ');
+                    uniqueID = id + '-' + (occurrences++);
                 }
             }
         });
+    };
+
+    /**
+     * Scrolls to the selected element.
+     *
+     * @return   {Object}         this
+     * @method   scrollTo
+     * @memberof jQuery.fn.thar
+     */
+
+    methods.scrollTo = function ()
+    {
+        var $this = this.eq(0), id = $this.attr('id');
+
+        $('html, body').animate({
+            scrollTop : $this.offset().top
+        }, 1000, 'swing', function ()
+        {
+            if (id)
+            {
+                window.location.hash = '#' + id;
+            }
+        });
+
+        return this;
     };
 
     /**
