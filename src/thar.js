@@ -137,9 +137,9 @@
             target : null
         }, options);
 
-        var previousLevel = 0, contents = '', baseLevel = this.get(0).nodeName.substr(1, 1);
+        var previousLevel = 0, contents = '', baseLevel = this.get(0).nodeName.substr(1, 1), target = this.filter('h1, h2, h3, h4, h5, h6');
 
-        this.filter('h1, h2, h3, h4, h5, h6').each(function ()
+        target.each(function ()
         {
             var $this = $(this), level = this.nodeName.substr(1, 1);
 
@@ -171,7 +171,18 @@
 
         if (contents)
         {
-            contents = '<ul>' + contents + new Array(previousLevel - baseLevel + 1).join('</li></ul>') + '</li></ul>';
+            contents = $('<ul>' + contents + new Array(previousLevel - baseLevel + 1).join('</li></ul>') + '</li></ul>');
+            contents.find('a').on('click', function (e)
+            {
+                var id = $(this).attr('href').substr(1);
+                e.preventDefault();
+                methods.scrollTo.apply(
+                    target.filter(function ()
+                    {
+                        return $(this).attr('id') === id;
+                    })
+                );
+            });
 
             if (!options.target)
             {
@@ -180,7 +191,7 @@
             else
             {
                 options.target.html(contents);
-            }
+            }   
         }
 
         return this;
