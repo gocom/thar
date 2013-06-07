@@ -94,7 +94,7 @@
 
     methods.scrollTo = function ()
     {
-        var $this = $(this).eq(0), id = $this.attr('id');
+        var $this = this.eq(0), id = $this.attr('id');
 
         $('html, body').animate({
             scrollTop : $this.offset().top
@@ -216,7 +216,7 @@
 
         return this.thar('setAnchorID').each(function ()
         {
-            var _this = this, $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
+            var $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
 
             if ($this.hasClass('jquery-thar'))
             {
@@ -227,7 +227,7 @@
 
             if (id === hash)
             {
-                methods.scrollTo.apply(this);
+                methods.scrollTo.apply($this);
 
                 $this.trigger('anchorload.thar', {
                     'id' : id
@@ -243,7 +243,7 @@
                     .on('click.thar', function (e)
                     {
                         e.preventDefault();
-                        methods.scrollTo.apply(_this);
+                        methods.scrollTo.apply($this);
                     });
 
                 if (options.anchor === true)
