@@ -39,6 +39,8 @@
 
 (function (factory)
 {
+    'use strict';
+
     if (typeof define === 'function' && define.amd)
     {
         define(['jquery'], factory);
@@ -49,6 +51,8 @@
     }
 }(function ($)
 {
+    'use strict';
+
     var hash = window.location.hash.substr(1), methods = {};
 
     /**
