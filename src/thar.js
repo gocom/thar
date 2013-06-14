@@ -1,7 +1,11 @@
-/*
+/**
  * thar - Automatic content anchors link plugin for jQuery
- * https://github.com/gocom/thar
  *
+ * @link    https://github.com/gocom/thar
+ * @license MIT
+ */
+
+/*
  * Copyright (C) 2013 Jukka Svahn
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
