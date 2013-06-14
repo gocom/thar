@@ -59,7 +59,6 @@
      * Renders content anchor links.
      *
      * @param    {Object}         [options={}]              Options
-     * @param    {String}         [options.prefix='']       A prefix added to the generated links
      * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text
      * @return   {Object}         this
      * @method   init
