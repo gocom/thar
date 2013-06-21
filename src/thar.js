@@ -85,12 +85,6 @@
             if (id === hash)
             {
                 methods.scrollTo.apply($this);
-
-                $this.trigger('anchorload.thar', {
-                    'id' : id
-                });
-
-                hash = false;
             }
 
             if (options.anchor !== false)
@@ -255,7 +249,7 @@
 
     methods.scrollTo = function ()
     {
-        var $this = this.eq(0), id = $this.attr('id');
+        var $this = this.eq(0).trigger('anchorScrollTo.thar'), id = $this.attr('id');
 
         $('html, body').animate({
             scrollTop : $this.offset().top
