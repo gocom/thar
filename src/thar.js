@@ -71,16 +71,9 @@
             'anchor' : '&#167;'
         }, options);
 
-        return this.thar('setAnchorID').each(function ()
+        this.not('.thar').addClass('thar').thar('setAnchorID').each(function ()
         {
             var $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
-
-            if ($this.hasClass('thar'))
-            {
-                return;
-            }
-
-            $this.addClass('thar').trigger('anchorcreate.thar');
 
             if (id === hash)
             {
@@ -106,7 +99,11 @@
                     $this.prepend(anchor.html(options.anchor)).prepend(' ');
                 }
             }
+
+            $this.trigger('anchorcreate.thar');
         });
+
+        return this;
     };
 
     /**
