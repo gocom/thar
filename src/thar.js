@@ -75,12 +75,12 @@
         {
             var $this = $(this), id = $this.attr('id'), anchor, content = $this.text();
 
-            if ($this.hasClass('jquery-thar'))
+            if ($this.hasClass('thar'))
             {
                 return;
             }
 
-            $this.addClass('jquery-thar').trigger('anchorcreate.thar');
+            $this.addClass('thar').trigger('anchorcreate.thar');
 
             if (id === hash)
             {
@@ -89,7 +89,7 @@
 
             if (options.anchor !== false)
             {
-                anchor = $('<a class="jquery-thar-anchor" />')
+                anchor = $('<a class="thar-anchor" />')
                     .attr('href', '#' + id)
                     .on('click.thar', function (e)
                     {
@@ -171,7 +171,7 @@
             }
 
             previousLevel = level;
-            contents += $('<div />').html($('<a />').text($this.clone().find('.jquery-thar-anchor').remove().end().text()).attr('href', '#' + $this.attr('id'))).html();
+            contents += $('<div />').html($('<a />').text($this.clone().find('.thar-anchor').remove().end().text()).attr('href', '#' + $this.attr('id'))).html();
         });
 
         if (contents)
