@@ -59,7 +59,7 @@
      * Renders content anchor links.
      *
      * @param    {Object}         [options={}]              Options
-     * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text
+     * @param    {String|Boolean} [options.anchor=&gt;#167] The anchor link text. If <code>TRUE</code>, wraps the element contents in a link, and <code>FALSE</code> disables the anchor
      * @return   {Object}         this
      * @method   init
      * @memberof jQuery.fn.thar
