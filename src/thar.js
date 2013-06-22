@@ -82,7 +82,7 @@
 
             if (options.anchor !== false)
             {
-                anchor = $('<a class="thar-anchor" />')
+                anchor = $('<a />')
                     .attr('href', '#' + id)
                     .on('click.thar', function (e)
                     {
@@ -92,11 +92,11 @@
 
                 if (options.anchor === true)
                 {
-                    $this.wrapInner(anchor);
+                    $this.wrapInner(anchor.addClass('thar-wrap'));
                 }
                 else
                 {
-                    $this.prepend(anchor.html(options.anchor)).prepend(' ');
+                    $this.prepend(anchor.html(options.anchor).addClass('thar-anchor')).prepend(' ');
                 }
             }
 
